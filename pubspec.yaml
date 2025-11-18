@@ -1,0 +1,49 @@
+name: flutter_getx_learning
+description: 一个用于学习 Flutter GetX 状态管理框架的完整项目，包含各种 GetX 的使用方法和详细的中文注释。
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.19.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # GetX 状态管理框架
+  get: ^4.6.5
+  
+  # UI 相关依赖
+  cupertino_icons: ^1.0.2
+  
+  # HTTP 请求库
+  http: ^1.1.0
+  
+  # 本地存储
+  get_storage: ^2.1.0
+  
+  # 日期时间处理
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_linter: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/docs/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
