@@ -1,6 +1,7 @@
 # Flutter 构建文件
 /build/
 /dist/
+/build_temp/
 
 # Dart/Flutter/Plugins 相关
 **/packages/
@@ -103,3 +104,5 @@ app.*.map.json
 # 自定义本地文件
 local.properties
 secrets.env
+linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux
+windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows
