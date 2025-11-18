@@ -30,7 +30,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_linter: ^2.0.0
+  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
@@ -40,10 +40,3 @@ flutter:
     - assets/images/
     - assets/docs/
 
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Roboto-Bold.ttf
-          weight: 700

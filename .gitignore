@@ -1,6 +1,7 @@
 # Flutter 构建文件
 /build/
 /dist/
+/build_temp/
 
 # Dart/Flutter/Plugins 相关
 **/packages/

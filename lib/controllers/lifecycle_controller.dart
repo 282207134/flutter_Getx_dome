@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 
 /// 生命周期控制器
-/// 
+///
 /// GetxController 提供了完整的生命周期回调，让你在适当的时刻执行初始化和清理工作
-/// 
+///
 /// 生命周期顺序：
 /// 1. 构造函数 (Constructor)
 /// 2. onInit() - 初始化
@@ -13,18 +15,19 @@ import 'package:get/get.dart';
 class LifecycleController extends GetxController {
   /// 日志列表
   final RxList<String> logs = <String>[].obs;
-  
+
   /// 是否已初始化
   final RxBool isInitialized = false.obs;
-  
+
   /// 是否已准备就绪
   final RxBool isReady = false.obs;
-  
+
   /// 运行时间（秒）
   final RxInt runtimeSeconds = 0.obs;
+  Timer? _timer;
 
   /// 构造函数
-  /// 
+  ///
   /// 注意：在构造函数中，响应式变量可能尚未完全初始化
   /// 建议在 onInit() 中执行初始化逻辑
   LifecycleController() {
@@ -32,7 +35,7 @@ class LifecycleController extends GetxController {
   }
 
   /// 初始化方法 (最先调用的生命周期回调)
-  /// 
+  ///
   /// 在这个方法中：
   /// - 初始化响应式变量
   /// - 设置监听器
@@ -43,11 +46,11 @@ class LifecycleController extends GetxController {
     super.onInit();
     addLog('2️⃣  onInit() 被调用 - 初始化时刻');
     isInitialized.value = true;
-    
+
     // 这是初始化数据的好地方
     // 比如从本地存储加载数据
     _loadInitialData();
-    
+
     // 设置监听器
     ever(runtimeSeconds, (seconds) {
       // 每当运行时间改变时执行
@@ -55,39 +58,40 @@ class LifecycleController extends GetxController {
   }
 
   /// 准备就绪方法
-  /// 
+  ///
   /// 在这个方法中：
   /// - 页面小部件已经构建完成
   /// - 可以安全地访问上下文
   /// - 可以执行 API 调用
   /// - 适合获取远程数据
-  /// 
+  ///
   /// onReady() 在 onInit() 之后调用
   @override
   void onReady() {
     super.onReady();
     addLog('3️⃣  onReady() 被调用 - 页面已构建');
     isReady.value = true;
-    
+
     // 在这里执行 API 调用或其他耗时操作
     _fetchRemoteData();
-    
+
     // 启动定时器来记录运行时间
     _startTimer();
   }
 
   /// 销毁方法 (最后调用的生命周期回调)
-  /// 
+  ///
   /// 在这个方法中：
   /// - 取消订阅
   /// - 停止定时器
   /// - 释放资源
   /// - 清理缓存
-  /// 
+  ///
   /// 必须调用 super.onClose()
   @override
   void onClose() {
     addLog('5️⃣  onClose() 被调用 - 清理资源');
+    isReady.value = false;
     _stopTimer();
     super.onClose();
   }
@@ -126,15 +130,16 @@ class LifecycleController extends GetxController {
   /// 启动计时器
   void _startTimer() {
     addLog('⏱️  计时器已启动');
-    Future.doWhile(() async {
-      await Future.delayed(const Duration(seconds: 1));
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       runtimeSeconds.value++;
-      return isReady.value; // 只要页面还在就继续
     });
   }
 
   /// 停止计时器
   void _stopTimer() {
+    _timer?.cancel();
+    _timer = null;
     addLog('⏱️  计时器已停止，总运行时间: ${runtimeSeconds.value} 秒');
   }
 
@@ -151,12 +156,12 @@ class LifecycleController extends GetxController {
 }
 
 /// 另一个演示生命周期的控制器
-/// 
+///
 /// 这个控制器展示如何正确处理资源和避免内存泄漏
 class ResourceManagementController extends GetxController {
   /// 订阅列表
   final List<String> subscriptions = [];
-  
+
   /// 定时器列表
   final List<Future<void>?> timers = [];
 
@@ -207,7 +212,7 @@ class ResourceManagementController extends GetxController {
 }
 
 /// 生命周期最佳实践
-/// 
+///
 /// 总结：
 /// 1. 在 onInit() 中初始化数据和设置监听器
 /// 2. 在 onReady() 中执行 API 调用
