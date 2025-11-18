@@ -1,0 +1,105 @@
+# Flutter 构建文件
+/build/
+/dist/
+
+# Dart/Flutter/Plugins 相关
+**/packages/
+pubspec.lock
+.dart_tool/
+
+# Android Studio 和 IntelliJ 相关
+.idea/
+*.iml
+*.ipr
+*.iws
+.gradle/
+.gradle
+/local.properties
+
+# 生成的文件
+/android/local.properties
+/android/GeneratedPluginRegistrant.java
+/android/.gradle/
+/android/gradlew
+/android/gradlew.bat
+
+# iOS 和 macOS 相关
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*sync/
+**/ios/**/.sconsign.dblite
+**/ios/**/.tags*
+**/ios/**/.vscode/
+**/ios/**/.vscode/*
+**/ios/**/Flutter/Flutter.framework
+**/ios/**/Flutter/Flutter.podspec
+**/ios/**/Flutter/Generated.xcconfig
+**/ios/**/Flutter/generated_plugins.cmake
+**/ios/**/Flutter/ephemeralflutterfiles(.*)?/
+**/ios/**/Flutter/app.flx
+**/ios/**/Flutter/app.zip
+**/ios/**/Flutter/flutter_assets/
+**/ios/**/Flutter/flutter_export_environment.sh
+**/ios/**/ServiceDefinitions.json
+**/ios/**/Runner/GeneratedPluginRegistrant.*
+
+# iOS/macOS Pod 文件
+**/ios/Pods/
+**/ios/Podfile.lock
+**/macos/Pods/
+**/macos/Podfile.lock
+
+# 覆盖文件
+coverage/
+
+# Symbols
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# 网页相关
+/web/packages/
+/web/plugins/
+/web/js_interop_unsafe_eval_generated.dart
+
+# 工作空间
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+
+# VS Code 相关
+.vscode/
+.history/
+.vscode-settings.json
+
+# 环境文件
+.env
+.env.local
+.env.*.local
+
+# 本地开发文件
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 临时文件
+*.tmp
+*.temp
+*.log
+*.iml
+
+# IDE 特定文件
+*.sublime-workspace
+*.sublime-project
+*.emacs.d
+*.vim-project
+
+# 自定义本地文件
+local.properties
+secrets.env
